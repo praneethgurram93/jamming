@@ -2,11 +2,12 @@ import React from "react";
 import './TrackList.css';
 import Track from "../track/Track";
 
-const TrackList = () => {
+const TrackList = ({tracks}) => {
   return (
     <div className="TrackList">
-      {/* <!-- You will add a map method that renders a set of Track components  --> */}
-      <Track />
+      {tracks.map(track => (
+        <Track key={track.id} track={track}/>
+      ))}
     </div>
   );
 };

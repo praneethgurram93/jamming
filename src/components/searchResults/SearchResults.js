@@ -1,11 +1,12 @@
 import React from "react";
 import './SearchResults.css';
+import TrackList from "../trackList/TrackList";
 
-const SearchResults = () => {
+const SearchResults = ({searchResults}) => {
   return (
     <div className="SearchResults">
       <h2>Results</h2>
-    {/*  Add TrackList component*/}
+      <TrackList tracks={searchResults}/>
     </div>
   );
 };
