@@ -12,10 +12,10 @@ function App() {
   /*
       Adds track to playlist
    */
-  const addTrack = (track) => {
+  const addTrack = track => {
     // check if track is already in the playlist
     const trackExists = playlistTracks.filter(
-      (playlistItem) => playlistItem.id === track.id
+      playlistItem => playlistItem.id === track.id
     );
 
     // trackExists.length would be zero if track is unique
@@ -29,15 +29,27 @@ function App() {
   /*
       Removes track from playlist
    */
-  const removeTrack = (track) => {
+  const removeTrack = track => {
     // filter the playlist to get tracks other than the current track
     const uniqueTracks = playlistTracks.filter(
-      (playlistItem) => playlistItem.id !== track.id
+      playlistItem => playlistItem.id !== track.id
     );
     setPlaylistTracks(uniqueTracks);
   };
 
-  const updatePlaylistName = (event) => setPlaylistName(event.target.value);
+  const updatePlaylistName = event => setPlaylistName(event.target.value);
+
+  /*
+      Saves Playlist to user's account
+   */
+  const savePlaylist = async () => {};
+
+  /*
+      Function to search spotify
+   */
+  const search = async searchTerm => {
+    console.log(searchTerm);
+  };
 
   return (
     <div>
@@ -47,7 +59,7 @@ function App() {
         ing
       </h1>
       <div className="App">
-        <SearchBar />
+        <SearchBar onSearch={search} />
         <div className="App-playlist">
           <SearchResults
             searchResults={searchResults}
@@ -58,6 +70,7 @@ function App() {
             playlistName={playlistName}
             playlistTracks={playlistTracks}
             onRemove={removeTrack}
+            onSave={savePlaylist}
             onNameChange={updatePlaylistName}
           />
         </div>
