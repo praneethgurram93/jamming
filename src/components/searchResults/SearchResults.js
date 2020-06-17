@@ -1,12 +1,17 @@
-import React from "react";
+import React from 'react';
 import './SearchResults.css';
-import TrackList from "../trackList/TrackList";
+import TrackList from '../trackList/TrackList';
 
-const SearchResults = ({searchResults, onAdd, onRemove}) => {
+const SearchResults = ({ searchResults, onAdd, onRemove }) => {
   return (
     <div className="SearchResults">
       <h2>Results</h2>
-      <TrackList tracks={searchResults} onAdd={onAdd} onRemove={onRemove} isRemoval={false}/>
+      <TrackList
+        tracks={searchResults}
+        onAdd={onAdd}
+        onRemove={onRemove}
+        isRemoval={false}
+      />
     </div>
   );
 };
