@@ -3,7 +3,7 @@ import './App.css';
 import Playlist from '../playlist/Playlist';
 import SearchBar from '../searchBar/SearchBar';
 import SearchResults from '../searchResults/SearchResults';
-import Spotify from '../../services/Spotify';
+import spotify from '../../services/Spotify';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -44,14 +44,33 @@ function App() {
       Saves Playlist to user's account
    */
   const savePlaylist = async () => {
-    Spotify.getAccessToken();
+    spotify.getAccessToken();
   };
 
   /*
-      Function to search spotify
+      Search Spotify
    */
   const search = async searchTerm => {
-    console.log(searchTerm);
+    try {
+      const searchResponse = await spotify.search(searchTerm);
+      console.log(searchResponse);
+      if (searchResponse.tracks && searchResponse.tracks.items) {
+        const {tracks: {items}} = searchResponse;
+        const results = items.map(track => {
+          const {artists, album, id, name, uri} = track;
+          return {
+            id: id,
+            name: name,
+            artist: artists[0].name,
+            album: album.name,
+            uri: uri
+          }
+        })
+        setSearchResults(results);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
