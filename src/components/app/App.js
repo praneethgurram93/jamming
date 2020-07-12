@@ -3,6 +3,7 @@ import './App.css';
 import Playlist from '../playlist/Playlist';
 import SearchBar from '../searchBar/SearchBar';
 import SearchResults from '../searchResults/SearchResults';
+import Spotify from '../../services/Spotify';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -42,7 +43,9 @@ function App() {
   /*
       Saves Playlist to user's account
    */
-  const savePlaylist = async () => {};
+  const savePlaylist = async () => {
+    Spotify.getAccessToken();
+  };
 
   /*
       Function to search spotify
